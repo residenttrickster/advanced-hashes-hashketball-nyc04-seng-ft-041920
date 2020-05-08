@@ -203,3 +203,71 @@ def big_shoe_rebounds
   end
   return rebounds
 end
+
+
+# Which player has the most points? Call the method most_points_scored.
+
+def most_points_scored
+  points = 0
+  name = ""
+  game_hash.each do |location, value|
+    value[:players].each do |key|
+      if points < key[:points]
+        points = key[:points]
+        name = key[:player_name]
+    end
+  end
+  return name
+end
+
+#Which team has the most points? Call the method winning_team.
+
+def winning_team
+  home_team = 0
+  away_team = 0
+  game_hash[:home][:players].each do |value|
+    home_team += value[:points]
+  end
+  game_hash[:away][:players].each do |value|
+    away_team += value[:points]
+end
+if home_team > away_team
+  return game_hash[:home][:players]
+elsif home_team < away_team
+  return game_hash[:away][:players]
+  end
+end
+
+
+#Which player has the longest name? Call the method player_with_longest_name.
+
+def player_with_longest_name
+  name = ""
+  game_hash.each do |location, value|
+    value[:player].each do |key|
+      if name < key[:player_name].length
+        name = key[:player_name]
+        end
+      end
+    end
+  end
+  return name
+end
+
+#Write a method that returns true if the player with the longest name had the most steals. Call the method long_name_steals_a_ton?.
+
+def long_name_steals_a_ton?
+  name = ""
+  most_steals = 0
+  game_hash.each do |location, value|
+    value[:player].each do |key|
+      if name < key[:player_name].length && most_steals < key [:steals]
+        name = key[:player_name]
+        most_steals = key[:steals]
+      end
+      if name == most_steals 
+        return true
+      end
+    end
+  end
+end
